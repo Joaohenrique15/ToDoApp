@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Todo.Domain.Entities;
 using Todo.Domain.Repositories;
 
-namespace Todo.Domain.Tests.Repositories
+namespace Todo.Tests.Repositories
 {
   public class FakeTodoRepository : ITodoRepository
   {

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Todo.Domain.Api
+namespace Todo.Api
 {
   public class Program
     {

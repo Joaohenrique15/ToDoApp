@@ -4,12 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Todo.Domain.Handlers;
-using Todo.Domain.Infra.Contexts;
-using Todo.Domain.Infra.Repositories;
+using Todo.Infra.Contexts;
+using Todo.Infra.Repositories;
 using Todo.Domain.Repositories;
 
-namespace Todo.Domain.Api
+namespace Todo.Api
 {
   public class Startup
   {
@@ -23,11 +24,15 @@ namespace Todo.Domain.Api
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddControllers();
-      services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
-      //services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
+      //services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
+      services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
 
       services.AddTransient<ITodoRepository, TodoRepository>();
       services.AddTransient<TodoHandler, TodoHandler>();
+      services.AddSwaggerGen(x =>
+      {
+        x.SwaggerDoc("v1", new OpenApiInfo { Title = "ToDoApp", Version = "v1" });
+      });
     }
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
@@ -35,7 +40,7 @@ namespace Todo.Domain.Api
       {
         app.UseDeveloperExceptionPage();
       }
-      
+
       app.UseHttpsRedirection();
 
       app.UseRouting();
@@ -47,12 +52,16 @@ namespace Todo.Domain.Api
       app.UseAuthentication();
       app.UseAuthorization();
 
-
-
       app.UseEndpoints(endpoints =>
       {
         endpoints.MapControllers();
       });
+
+      app.UseSwagger();
+      app.UseSwaggerUI(c =>
+        {
+          c.SwaggerEndpoint("/swagger/v1/swagger.json", "ToDoApp - v1");
+        });
     }
   }
 }

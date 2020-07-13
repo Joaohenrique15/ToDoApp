@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Todo.Domain.Entities;
 using Todo.Domain.Queries;
 
-namespace Todo.Domain.Tests.EntityTests
+namespace Todo.Tests.EntityTests
 {
   [TestClass]
   public class TodoQueryTests

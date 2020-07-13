@@ -2,7 +2,7 @@ using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Todo.Domain.Commands;
 
-namespace Todo.Domain.Tests.CommandTests
+namespace Todo.Tests.CommandTests
 {
   [TestClass]
   public class CreateTodoCommandTests

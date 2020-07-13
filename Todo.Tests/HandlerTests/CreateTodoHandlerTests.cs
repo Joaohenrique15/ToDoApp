@@ -2,9 +2,9 @@ using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Todo.Domain.Commands;
 using Todo.Domain.Handlers;
-using Todo.Domain.Tests.Repositories;
+using Todo.Tests.Repositories;
 
-namespace Todo.Domain.Tests.HandlerTests
+namespace Todo.Tests.HandlerTests
 {
   [TestClass]
   public class CreateTodoHandlerTests
