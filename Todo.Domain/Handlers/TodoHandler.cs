@@ -26,7 +26,7 @@ namespace Todo.Domain.Handlers
         return new GenericCommandResult(false, "Ops, parece que sua tarefa está errada!", command.Notifications);
 
       // Gera o TodoItem
-      var todo = new TodoItem(command.Title, command.Date, command.User);
+      var todo = new TodoItem(command.Title, command.User, command.Date);
 
       // Salva no banco
       _repository.Create(todo);
